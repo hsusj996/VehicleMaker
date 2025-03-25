@@ -1,3 +1,4 @@
+#pragma once
 #include <boost/asio.hpp>
 #include "request_handler.h"
 
@@ -17,4 +18,4 @@ public:
     void startListening();  // 리스닝 시작 메소드
 };
 
-void listener_thread();  // listener_thread는 독립된 스레드로 실행될 함수
+void listener_thread(boost::asio::io_context& io_context, RequestHandler& requestHandler, int port);  // listener_thread는 독립된 스레드로 실행될 함수
