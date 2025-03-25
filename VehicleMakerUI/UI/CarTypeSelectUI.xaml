@@ -12,7 +12,7 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="8*"/>
             <RowDefinition Height="9*"/>
-            <RowDefinition Height="0*"/>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="213*"/>
@@ -34,9 +34,11 @@
         <DockPanel x:Name="dpTruck" Grid.Column="2" LastChildFill="False">
             <Image Source="pack://application:,,,/Properties/CarType/truck_default.jpg" Stretch="Uniform" Width="635" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </DockPanel>
+        
         <Label Content="Sedan" FontSize="50" Foreground="White" Margin="242,10,241,10" Grid.Row="2"/>
         <Label Content="SUV" FontSize="50" Foreground="White" Margin="265,10,265,10" Grid.Row="2" Grid.Column="1"/>
         <Label Content="Truck" FontSize="50" Foreground="White" Margin="252,10,252,10" Grid.Row="2" Grid.Column="2"/>
+       
         <Button x:Name="btnSelectSedan" Content="Select" Grid.Row="3" FontSize="36" Margin="178,33,177,34" Click="btnSelectSedan_Click"/>
         <Button x:Name="btnSelectSUV" Content="Select" Grid.Column="1" Grid.Row="3" FontSize="36" Margin="178,33,177,34" Click="btnSelectSUV_Click"/>
         <Button x:Name="btnSelectTruck" Content="Select" Grid.Column="2" Grid.Row="3" FontSize="36" Margin="178,33,177,34" Click="btnSelectTruck_Click"/>
