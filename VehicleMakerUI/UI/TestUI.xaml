@@ -5,13 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1920">
-    <Grid>
+    <Grid Height="900" VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0.874"/>
                 <GradientStop Color="#FF556BE8" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
+        <DockPanel LastChildFill="False" Grid.RowSpan="2"/>
+        <DockPanel LastChildFill="False" Grid.Column="1">
+            <Image Source="pack://application:,,,/Properties/Test/test_Test.jpg" Stretch="Uniform" Height="786" Width="960"/>
+        </DockPanel>
+        <Image Source="pack://application:,,,/Properties/Test/test_Run.jpg" Stretch="Uniform" Margin="0,0,0,51"/>
+        <Button x:Name="btnRun" Content="Run" Margin="357,29,357,29" Grid.Row="1" FontSize="24" Click="btnRun_Click"/>
+        <Button x:Name="btnTest" Content="Test" Margin="357,29,357,29" Grid.Row="1" Grid.Column="1" FontSize="24" Click="btnTest_Click"/>
 
     </Grid>
 </UserControl>

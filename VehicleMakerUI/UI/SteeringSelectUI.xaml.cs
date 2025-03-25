@@ -14,7 +14,6 @@ namespace VehicleMakerUI.UI
         {
             var parentWindow = Window.GetWindow(this) as SelectOptionUI;
             parentWindow?.SetSteeringSystem("Bosch");
-            parentWindow?.SendToCppServer();
             parentWindow?.ShowTestUI();
 
         }
@@ -23,7 +22,6 @@ namespace VehicleMakerUI.UI
         {
             var parentWindow = Window.GetWindow(this) as SelectOptionUI;
             parentWindow?.SetSteeringSystem("Mobis");
-            parentWindow?.SendToCppServer();
             parentWindow?.ShowTestUI();
         }
     }

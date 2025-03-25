@@ -21,6 +21,8 @@
     <None Remove="Properties\EngineType\engine_wia.jpg" />
     <None Remove="Properties\SteeringType\steering_bosch.jpg" />
     <None Remove="Properties\SteeringType\steering_mobis.jpg" />
+    <None Remove="Properties\Test\test_Run.jpg" />
+    <None Remove="Properties\Test\test_Test.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +38,8 @@
     <Resource Include="Properties\EngineType\engine_wia.jpg" />
     <Resource Include="Properties\SteeringType\steering_bosch.jpg" />
     <Resource Include="Properties\SteeringType\steering_mobis.jpg" />
+    <Resource Include="Properties\Test\test_Run.jpg" />
+    <Resource Include="Properties\Test\test_Test.jpg" />
   </ItemGroup>
 
   <ItemGroup>
