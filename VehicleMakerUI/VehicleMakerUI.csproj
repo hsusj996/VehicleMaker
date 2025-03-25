@@ -8,4 +8,59 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Properties\BrakeType\brake_bosch.jpg" />
+    <None Remove="Properties\BrakeType\brake_continental.jpg" />
+    <None Remove="Properties\BrakeType\brake_mando.jpg" />
+    <None Remove="Properties\CarType\sedan_default.jpg" />
+    <None Remove="Properties\CarType\suv_default.jpg" />
+    <None Remove="Properties\CarType\truck_default.jpg" />
+    <None Remove="Properties\EngineType\engine_broken.jpg" />
+    <None Remove="Properties\EngineType\engine_gm.jpg" />
+    <None Remove="Properties\EngineType\engine_toyota.jpg" />
+    <None Remove="Properties\EngineType\engine_wia.jpg" />
+    <None Remove="Properties\SteeringType\steering_bosch.jpg" />
+    <None Remove="Properties\SteeringType\steering_mobis.jpg" />
+    <None Remove="Properties\Test\test_Run.jpg" />
+    <None Remove="Properties\Test\test_Test.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Properties\BrakeType\brake_bosch.jpg" />
+    <Resource Include="Properties\BrakeType\brake_continental.jpg" />
+    <Resource Include="Properties\BrakeType\brake_mando.jpg" />
+    <Resource Include="Properties\CarType\sedan_default.jpg" />
+    <Resource Include="Properties\CarType\suv_default.jpg" />
+    <Resource Include="Properties\CarType\truck_default.jpg" />
+    <Resource Include="Properties\EngineType\engine_broken.jpg" />
+    <Resource Include="Properties\EngineType\engine_gm.jpg" />
+    <Resource Include="Properties\EngineType\engine_toyota.jpg" />
+    <Resource Include="Properties\EngineType\engine_wia.jpg" />
+    <Resource Include="Properties\SteeringType\steering_bosch.jpg" />
+    <Resource Include="Properties\SteeringType\steering_mobis.jpg" />
+    <Resource Include="Properties\Test\test_Run.jpg" />
+    <Resource Include="Properties\Test\test_Test.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\CarTypeSelectUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
 </Project>
