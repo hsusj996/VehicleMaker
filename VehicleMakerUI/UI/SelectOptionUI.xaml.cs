@@ -13,17 +13,17 @@ namespace VehicleMakerUI.UI
         public SelectOptionUI()
         {
             InitializeComponent();
-            SelectedConfig = new VehicleConfiguration(); // 초기화
+            SelectedConfig = new VehicleConfiguration(); 
             HighlightStep(stepType);
         }
 
         private void HighlightStep(TextBlock activeStep)
         {
-            stepType.Foreground = Brushes.White;
-            stepEngine.Foreground = Brushes.White;
-            stepBrake.Foreground = Brushes.White;
-            stepSteering.Foreground = Brushes.White;
-            stepTest.Foreground = Brushes.White;
+            stepType.Foreground = Brushes.Gray;
+            stepEngine.Foreground = Brushes.Gray;
+            stepBrake.Foreground = Brushes.Gray;
+            stepSteering.Foreground = Brushes.Gray;
+            stepTest.Foreground = Brushes.Gray;
 
             stepType.FontWeight = FontWeights.Normal;
             stepEngine.FontWeight = FontWeights.Normal;
@@ -31,7 +31,7 @@ namespace VehicleMakerUI.UI
             stepSteering.FontWeight = FontWeights.Normal;
             stepTest.FontWeight = FontWeights.Normal;
 
-            activeStep.Foreground = Brushes.Yellow;
+            activeStep.Foreground = Brushes.White;
             activeStep.FontWeight = FontWeights.Bold;
         }
 
@@ -86,6 +86,19 @@ namespace VehicleMakerUI.UI
             testUI.Visibility = Visibility.Visible;
             HighlightStep(stepTest);
         }
+
+        public void resetUI()
+        {
+            SelectedConfig = new VehicleConfiguration();
+
+            carTypeUI.Visibility = Visibility.Visible;
+            engineUI.Visibility = Visibility.Collapsed;
+            brakeUI.Visibility = Visibility.Collapsed;
+            steeringUI.Visibility = Visibility.Collapsed;
+            testUI.Visibility = Visibility.Collapsed;
+
+            HighlightStep(stepType);
+        }
         public void SendToCppServer(string testMode)
         {
             try
@@ -115,7 +128,32 @@ namespace VehicleMakerUI.UI
                 MessageBox.Show($"전송 실패: {ex.Message}");
             }
         }
+
+
+        public void SendResetToCpp()
+        {
+            try
+            {
+                var payload = new
+                {
+                    Command = "Reset"
+                };
+
+                string json = JsonSerializer.Serialize(payload);
+
+                byte[] data = Encoding.UTF8.GetBytes(json);
+                using TcpClient client = new TcpClient("127.0.0.1", 8080);
+                using NetworkStream stream = client.GetStream();
+
+                stream.Write(data, 0, data.Length);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"리셋 전송 실패: {ex.Message}");
+            }
+        }
     }
+
 
     public class VehicleConfiguration
     {

@@ -21,5 +21,12 @@ namespace VehicleMakerUI.UI
             var parentWindow = Window.GetWindow(this) as SelectOptionUI;
             parentWindow?.SendToCppServer("Test");
         }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            var parentWindow = Window.GetWindow(this) as SelectOptionUI;
+            parentWindow?.resetUI();
+            parentWindow?.SendResetToCpp();
+        }
     }
 }
