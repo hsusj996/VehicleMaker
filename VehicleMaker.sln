@@ -1,11 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VehicleMakerCpp", "VehicleMakerCpp\VehicleMakerCpp.vcxproj", "{8C61A0A0-10A2-4711-9129-4436A2CFC872}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleMakerUI", "VehicleMakerUI\VehicleMakerUI.csproj", "{35E0671A-820A-4C3E-8AD1-E9B89E4A6144}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{C8D5274F-AC00-46C7-1F8D-E88E81087A52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CarType", "CarType", "{AC0D023F-4245-4B86-92AF-64FD536EC3F4}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\CarType\sedan_default.jpg = Resources\CarType\sedan_default.jpg
+		Resources\CarType\suv_default.jpg = Resources\CarType\suv_default.jpg
+		Resources\CarType\truck_default.jpg = Resources\CarType\truck_default.jpg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +53,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC0D023F-4245-4B86-92AF-64FD536EC3F4} = {C8D5274F-AC00-46C7-1F8D-E88E81087A52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47DDBA8D-F90F-4117-90D4-EF99637AF36B}

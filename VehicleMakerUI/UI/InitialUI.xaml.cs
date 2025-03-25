@@ -8,16 +8,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VehicleMakerUI.UI;
 
-namespace VehicleMakerUI;
+namespace VehicleMakerUI.UI;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+public partial class InitialUI : Window
 {
-    public MainWindow()
+    public InitialUI()
     {
         InitializeComponent();
+    }
+
+    private void btnStart_Click(object sender, RoutedEventArgs e)
+    {
+        SelectOptionUI OptionWindow = new SelectOptionUI();
+
+        OptionWindow.Show();
+
+        this.Close();
     }
 }
