@@ -1,4 +1,5 @@
 #include "request_handler.h"
+#include "request_dto.h"
 #include <iostream>  // 로그 출력 등 필요한 헤더 추가
 
 RequestHandler::RequestHandler() {
@@ -6,15 +7,20 @@ RequestHandler::RequestHandler() {
 }
 
 // 요청 처리 메소드 정의
-std::string RequestHandler::handle(int option) {
+std::string RequestHandler::handle(request_dto request) {
     std::string ret;
+
+	int option = request.getOption();
+	Vehicle vehicle = request.getVehicle();
     switch (option) {
     case 1:
-        ret = vehicle.testAPI();
+        std::cout << "차량 테스트" << std::endl;
+        std::cout << vehicle.toString() << std::endl;
         break;
     case 2:
-        ret = "Option 2 is selected";
-        break;
+		std::cout << "차량 RUN" << std::endl;
+		std::cout << vehicle.toString() << std::endl;
+		break;
     default:
         ret = "Invalid option";
         break;

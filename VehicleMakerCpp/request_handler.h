@@ -1,5 +1,7 @@
+#pragma once
 #include <string>
 #include "vehicle.h"  // Vehicle 클래스가 정의된 헤더 파일을 포함
+#include "request_dto.h"
 
 class RequestHandler {
 private:
@@ -10,5 +12,5 @@ public:
     RequestHandler();
 
     // 요청을 처리하는 메소드
-    std::string handle(int option);
+    std::string handle(request_dto request);
 };

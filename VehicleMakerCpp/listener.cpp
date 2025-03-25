@@ -1,4 +1,6 @@
 #include "listener.h"
+#include "request_dto.h"
+#include <nlohmann/json.hpp>
 
 void Listener::startListening() {
 	char data[max_length];
@@ -14,16 +16,21 @@ void Listener::startListening() {
 				continue;
 			}
 
-			if (length > 0) {
-				std::string response = requestHandler.handle(1);
-				socket.send_to(boost::asio::buffer(response), sender_endpoint);
-			}
-			else {
+			if (length == 0) {
 				continue;
 			}
 
-			std::string response = requestHandler.handle(1);
-			socket.send_to(boost::asio::buffer(response), sender_endpoint);
+			// RequestDTO 파싱
+			request_dto request = request_dto::from_json(nlohmann::json::parse(data));
+			// 비즈니스 로직 수행
+			std::string result = requestHandler.handle(request);
+
+			// 응답 처리
+			int retry = 0;
+			socket.send_to(boost::asio::buffer(result), sender_endpoint, 0, ec);
+			while (ec && ++retry < 5) {
+				socket.send_to(boost::asio::buffer(result), sender_endpoint, 0, ec);
+			}
 		}
 	}
 	catch (const boost::system::system_error& e) {
