@@ -1,8 +1,5 @@
 #include "request_dto.h"
 
-// 积己磊 备泅
-request_dto::request_dto(TestOption test_option, Vehicle vehicle) : test_option(test_option), vehicle(vehicle) {}
-
 // getter 皋家靛 备泅
 TestOption request_dto::getOption() {
    return test_option;
@@ -25,9 +22,11 @@ request_dto request_dto::from_json(const nlohmann::json& j) {
 	}
 
 	nlohmann::json vehicle_json = j["Data"];
-	Vehicle vehicle = Vehicle(vehicle_json["CarType"]);
-	vehicle.setBreakSystem(makeBreakSystem(vehicle_json["BrakeSystem"]));
-	vehicle.setEngine(makeEngine(vehicle_json["EngineType"]));
-	vehicle.setSteeringSystem(makeSteeringSystem(vehicle_json["SteeringSystem"]));
-	return request_dto(test_option, vehicle);
+
+	Vehicle* vehicle = VehicleFactory::makeVehicle(vehicle_json["CarType"]);
+	Assembler::getInstance().assembleEngine(vehicle, vehicle_json["EngineType"]);
+	Assembler::getInstance().assembleBreakSystem(vehicle, vehicle_json["BrakeSystem"]);
+	Assembler::getInstance().assembleSteeringSystem(vehicle, vehicle_json["SteeringSystem"]);
+
+	return request_dto(test_option, *vehicle);
 }

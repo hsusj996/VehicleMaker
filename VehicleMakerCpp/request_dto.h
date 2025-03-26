@@ -2,6 +2,7 @@
 #include <nlohmann/json.hpp>
 #include "vehicle.cpp"
 #include "test_option.h"
+#include "assembler.cpp"
 
 class request_dto {
 private:
@@ -11,7 +12,7 @@ private:
 public:
     // 持失切 識情
 	request_dto() = default;
-    request_dto(TestOption test_option, Vehicle vehicle);
+	request_dto(TestOption test_option, Vehicle vehicle) : test_option(test_option), vehicle(vehicle) {}
 
     // getter 五社球 識情
     TestOption getOption();
