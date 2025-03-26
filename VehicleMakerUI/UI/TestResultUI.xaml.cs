@@ -73,42 +73,42 @@ namespace VehicleMakerUI.UI
             {
                 case CppResponseCode.Fail_Sedan_Continental:
                     car = "\uD83D\uDE97 자동차 타입 체크 ... ✅ Sedan";
-                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ Sedan은 Continental 제동장치를 사용할 수 없습니다.";
+                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ \nSedan은 Continental 제동장치를 사용할 수 없습니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_SUV_Toyota:
                     car = "\uD83D\uDE97 자동차 타입 체크 ... ✅ SUV";
-                    engine = "\uD83D\uDEE0 엔진 타입 체크 ... ❌ SUV는 TOYOTA 엔진을 사용할 수 없습니다.";
+                    engine = "\uD83D\uDEE0 엔진 타입 체크 ... ❌ \nSUV는 TOYOTA 엔진을 사용할 수 없습니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_Truck_WIA:
                     car = "\uD83D\uDE97 자동차 타입 체크 ... ✅ Truck";
-                    engine = "\uD83D\uDEE0 엔진 타입 체크 ... ❌ Truck은 WIA 엔진을 사용할 수 없습니다.";
+                    engine = "\uD83D\uDEE0 엔진 타입 체크 ... ❌ \nTruck은 WIA 엔진을 사용할 수 없습니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_Truck_Mando:
                     car = "\uD83D\uDE97 자동차 타입 체크 ... ✅ Truck";
-                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ Truck은 MANDO 제동장치를 사용할 수 없습니다.";
+                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ \nTruck은 MANDO 제동장치를 사용할 수 없습니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_BoschBrake_NoBoschSteering:
                     brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ✅ Bosch";
-                    steering = "\uD83E\uDDFD 조향 타입 체크 ... ❌ Bosch 제동장치를 썼다면 조향장치도 Bosch여야 합니다.";
+                    steering = "\uD83E\uDDFD 조향 타입 체크 ... ❌ \nBosch 제동장치를 썼다면 조향장치도 Bosch여야 합니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_BoschSteering_NoBoschBrake:
                     steering = "\uD83E\uDDFD 조향 타입 체크 ... ✅ Bosch";
-                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ Bosch 조향장치를 썼다면 제동장치도 Bosch여야 합니다.";
+                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ \nBosch 조향장치를 썼다면 제동장치도 Bosch여야 합니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_EngineBroken:
-                    engine = "\uD83D\uDEE0 엔진 타입 체크 ... ❌ 엔진이 고장났습니다. 자동차가 움직이지 않습니다.";
+                    engine = "\uD83D\uDEE0 엔진 타입 체크 ... ❌ \n엔진이 고장났습니다. 자동차가 움직이지 않습니다.";
                     isSuccess = false;
                     break;
             }
