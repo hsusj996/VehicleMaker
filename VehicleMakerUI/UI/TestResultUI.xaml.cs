@@ -45,6 +45,13 @@ namespace VehicleMakerUI.UI
                 _ => "⚠ 알 수 없는 결과입니다."
             };
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this)?.Close();
+            var initial = new InitialUI();
+            initial.Show();                
+        }
     }
 }
 

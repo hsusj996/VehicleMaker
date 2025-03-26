@@ -8,10 +8,12 @@
             <ProgressBar x:Name="LoadingBar" Width="200" Height="20"
                          IsIndeterminate="True" Visibility="Visible"/>
 
-            <TextBlock x:Name="ResultText" FontSize="16"
+            <TextBlock x:Name="ResultText" FontSize="50"
                        TextAlignment="Center"
                        Margin="20" Visibility="Collapsed" Foreground="White"
                        TextWrapping="Wrap" />
         </StackPanel>
+        <Button Content="Back to the beginning" Margin="64,205,64,15" Click="Button_Click"/>
+
     </Grid>
 </UserControl>
