@@ -5,12 +5,14 @@ namespace VehicleMakerUI.UI
 {
     public partial class EngineSelectUI : UserControl
     {
+        #region ---Initialize---
         public EngineSelectUI()
         {
             InitializeComponent();
         }
+        #endregion
 
-
+        #region ---Button Event---
         private void btnSelectGm_Click(object sender, RoutedEventArgs e)
         {
             var parentWindow = Window.GetWindow(this) as SelectOptionUI;
@@ -38,5 +40,6 @@ namespace VehicleMakerUI.UI
             parentWindow?.ShowBrakeUI();
             parentWindow?.SetEngineType("Broken");
         }
+        #endregion
     }
 }

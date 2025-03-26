@@ -10,33 +10,20 @@ namespace VehicleMakerUI.UI
 {
     public partial class SelectOptionUI : Window
     {
+        #region ---Properties---
         public VehicleConfiguration SelectedConfig { get; private set; }
+        #endregion
 
+        #region ---Initalize---
         public SelectOptionUI()
         {
             InitializeComponent();
             SelectedConfig = new VehicleConfiguration(); 
             HighlightStep(stepType);
         }
+        #endregion
 
-        private void HighlightStep(TextBlock activeStep)
-        {
-            stepType.Foreground = Brushes.Gray;
-            stepEngine.Foreground = Brushes.Gray;
-            stepBrake.Foreground = Brushes.Gray;
-            stepSteering.Foreground = Brushes.Gray;
-            stepTest.Foreground = Brushes.Gray;
-
-            stepType.FontWeight = FontWeights.Normal;
-            stepEngine.FontWeight = FontWeights.Normal;
-            stepBrake.FontWeight = FontWeights.Normal;
-            stepSteering.FontWeight = FontWeights.Normal;
-            stepTest.FontWeight = FontWeights.Normal;
-
-            activeStep.Foreground = Brushes.White;
-            activeStep.FontWeight = FontWeights.Bold;
-        }
-
+        #region ---Set Vehicle Configuration---
         public void SetCarType(string type)
         {
             SelectedConfig.CarType = type;
@@ -59,6 +46,28 @@ namespace VehicleMakerUI.UI
         {
             SelectedConfig.SteeringSystem = steering;
             ShowTestUI();
+        }
+
+        #endregion
+
+        #region ---Change User Control---
+
+        private void HighlightStep(TextBlock activeStep)
+        {
+            stepType.Foreground = Brushes.Gray;
+            stepEngine.Foreground = Brushes.Gray;
+            stepBrake.Foreground = Brushes.Gray;
+            stepSteering.Foreground = Brushes.Gray;
+            stepTest.Foreground = Brushes.Gray;
+
+            stepType.FontWeight = FontWeights.Normal;
+            stepEngine.FontWeight = FontWeights.Normal;
+            stepBrake.FontWeight = FontWeights.Normal;
+            stepSteering.FontWeight = FontWeights.Normal;
+            stepTest.FontWeight = FontWeights.Normal;
+
+            activeStep.Foreground = Brushes.White;
+            activeStep.FontWeight = FontWeights.Bold;
         }
 
         public void ShowEngineUI()
@@ -101,6 +110,10 @@ namespace VehicleMakerUI.UI
 
             HighlightStep(stepType);
         }
+
+        #endregion
+
+        #region ---Socket---
         public void SendToCppServer(string testMode)
         {
             try
@@ -127,7 +140,5 @@ namespace VehicleMakerUI.UI
         }
 
     }
-
-
-
+    #endregion
 }

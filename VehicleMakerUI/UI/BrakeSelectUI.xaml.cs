@@ -5,11 +5,14 @@ namespace VehicleMakerUI.UI
 {
     public partial class BrakeSelectUI : UserControl
     {
+        #region ---Initialize---
         public BrakeSelectUI()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region ---Button Event---
         private void btnSelectBosch_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var parentWindow = Window.GetWindow(this) as SelectOptionUI;
@@ -30,5 +33,6 @@ namespace VehicleMakerUI.UI
             parentWindow?.ShowSteeringUI();
             parentWindow?.SetBrakeSystem("Mando");
         }
+        #endregion
     }
 }
