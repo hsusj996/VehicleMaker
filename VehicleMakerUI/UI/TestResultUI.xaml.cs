@@ -66,14 +66,14 @@ namespace VehicleMakerUI.UI
             bool isSuccess = true;
             string car = $"\uD83D\uDE97 자동차 타입 체크 ... ✅ {config.CarType}";
             string engine = $"\uD83D\uDEE0 엔진 타입 체크 ... ✅ {config.EngineType}";
-            string brake = $"\uD83E\uDEAE 브레이크 타입 체크 ... ✅ {config.BrakeSystem}";
+            string brake = $"\u1F6D1 브레이크 타입 체크 ... ✅ {config.BrakeSystem}";
             string steering = $"\uD83E\uDDFD 조향 타입 체크 ... ✅ {config.SteeringSystem}";
             string finalresult = $"Success";
             switch (result)
             {
                 case CppResponseCode.Fail_Sedan_Continental:
                     car = "\uD83D\uDE97 자동차 타입 체크 ... ✅ Sedan";
-                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ \nSedan은 Continental 제동장치를 사용할 수 없습니다.";
+                    brake = "\u1F6D1 브레이크 타입 체크 ... ❌ \nSedan은 Continental 제동장치를 사용할 수 없습니다.";
                     isSuccess = false;
                     break;
 
@@ -91,19 +91,19 @@ namespace VehicleMakerUI.UI
 
                 case CppResponseCode.Fail_Truck_Mando:
                     car = "\uD83D\uDE97 자동차 타입 체크 ... ✅ Truck";
-                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ \nTruck은 MANDO 제동장치를 사용할 수 없습니다.";
+                    brake = "\u1F6D1 브레이크 타입 체크 ... ❌ \nTruck은 MANDO 제동장치를 사용할 수 없습니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_BoschBrake_NoBoschSteering:
-                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ✅ Bosch";
+                    brake = "\u1F6D1 브레이크 타입 체크 ... ✅ Bosch";
                     steering = "\uD83E\uDDFD 조향 타입 체크 ... ❌ \nBosch 제동장치를 썼다면 조향장치도 Bosch여야 합니다.";
                     isSuccess = false;
                     break;
 
                 case CppResponseCode.Fail_BoschSteering_NoBoschBrake:
                     steering = "\uD83E\uDDFD 조향 타입 체크 ... ✅ Bosch";
-                    brake = "\uD83E\uDEAEs 브레이크 타입 체크 ... ❌ \nBosch 조향장치를 썼다면 제동장치도 Bosch여야 합니다.";
+                    brake = "\u1F6D1 브레이크 타입 체크 ... ❌ \nBosch 조향장치를 썼다면 제동장치도 Bosch여야 합니다.";
                     isSuccess = false;
                     break;
 
