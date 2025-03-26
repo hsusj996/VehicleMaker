@@ -49,11 +49,11 @@ public:
 		if (engine == nullptr) {
 			std::cout << "엔진이 고장났습니다.\n";
 			std::cout << "자동차가 움직이지 않습니다.\n";
-			return true;
+			return false;
 		}
 		else {
 			std::cout << "자동차가 동작됩니다.\n";
-			return false;
+			return true;
 		}
 	}
 };
