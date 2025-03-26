@@ -32,9 +32,12 @@ public:
 };
 
 // factory pattern
-inline BreakSystem* makeBreakSystem(std::string name) {
-	if (name == "Mando") return new Mando();
-	if (name == "Continental") return new Continental();
-	if (name == "Bosch") return new BoschBreak();
-	return nullptr;
-}
+class BreakSystemFactory {
+public:
+	static BreakSystem* makeBreakSystem(std::string name) {
+		if (name == "Mando") return new Mando();
+		if (name == "Continental") return new Continental();
+		if (name == "Bosch") return new BoschBreak();
+		return nullptr;
+	}
+};

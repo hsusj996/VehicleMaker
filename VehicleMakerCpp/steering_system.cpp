@@ -27,8 +27,11 @@ public:
 };
 
 // factory pattern
-inline SteeringSystem* makeSteeringSystem(std::string name) {
-	if (name == "Bosch") return new BoschSteering();
-	if (name == "Mobis") return new Mobis();
-	return nullptr;
-}
+class SteeringSystemFactory {
+public:
+	static SteeringSystem* makeSteeringSystem(std::string name) {
+		if (name == "Bosch") return new BoschSteering();
+		if (name == "Mobis") return new Mobis();
+		return nullptr;
+	}
+};
