@@ -81,7 +81,6 @@ Vehicle* selectVehicleType(int answer) {
 	if (answer == 1) vehicleType = "Sedan";
 	else if (answer == 2) vehicleType = "Suv";
 	else if (answer == 3) vehicleType = "Truck";
-	// Todo: exception handling
 	else return nullptr;
 
 	std::cout << "차량 타입으로 " << vehicleType << "을 선택하셨습니다.\n";
@@ -93,8 +92,11 @@ void selectEngine(Vehicle* vehicle, int answer) {
 	if (answer == 1) Assembler::getInstance().assembleEngine(vehicle, "Gm");
 	if (answer == 2) Assembler::getInstance().assembleEngine(vehicle, "Toyota");
 	if (answer == 3) Assembler::getInstance().assembleEngine(vehicle, "Wia");
+	if (answer == 4) {
+		Assembler::getInstance().assembleEngine(vehicle, "Engine", true);
+		return;
+	}
 
-	// Todo: exception handling
 	std::cout << vehicle->getEngineName() << " 엔진을 선택하셨습니다.\n";
 }
 
@@ -103,7 +105,6 @@ void selectBreakSystem(Vehicle* vehicle, int answer) {
 	if (answer == 2) Assembler::getInstance().assembleBreakSystem(vehicle, "Continental");
 	if (answer == 3) Assembler::getInstance().assembleBreakSystem(vehicle, "Bosch");
 
-	// Todo: exception handling
 	std::cout << vehicle->getBreakSystemName() << " 제동장치를 선택하셨습니다.\n";
 }
 
@@ -111,7 +112,6 @@ void selectSteeringSystem(Vehicle* vehicle, int answer) {
 	if (answer == 1) Assembler::getInstance().assembleSteeringSystem(vehicle, "Bosch");
 	if (answer == 2) Assembler::getInstance().assembleSteeringSystem(vehicle, "Mobis");
 
-	// Todo: exception handling
 	std::cout << vehicle->getSteeringSystemName() << " 조향장치를 선택하셨습니다.\n";
 }
 
@@ -158,48 +158,75 @@ int main() {
 			break;
 		}
 
-		// Todo: error handling
-		int answer = std::stoi(buf);
+		try {
+			int answer = std::stoi(buf);
 
-		//처음으로 돌아가기
-		if (answer == 0 && step == static_cast<int>(QuesionType::Run_Test)) {
-			step = static_cast<int>(QuesionType::VehicleType_Q);
-			continue;
-		}
+			if (step == static_cast<int>(QuesionType::VehicleType_Q) && !(answer >= 1 && answer <= 3))
+				throw std::out_of_range("차량 타입은 1 ~ 3 범위만 선택 가능\n");
 
-		//이전으로 돌아가기
-		if (answer == 0 && step >= 1) {
-			step -= 1;
-			continue;
-		}
+			if (step == static_cast<int>(QuesionType::Engine_Q) && !(answer >= 0 && answer <= 4))
+				throw std::out_of_range("엔진은 1 ~ 4 범위만 선택 가능\n");
 
-		if (step == static_cast<int>(QuesionType::VehicleType_Q)) {
-			vehicle = selectVehicleType(answer);
-			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = static_cast<int>(QuesionType::Engine_Q);
+			if (step == static_cast<int>(QuesionType::BreakSystem_Q) && !(answer >= 0 && answer <= 3))
+				throw std::out_of_range("제동장치는 1 ~ 3 범위만 선택 가능\n");
+
+			if (step == static_cast<int>(QuesionType::SteeringSystem_Q) && !(answer >= 0 && answer <= 2))
+				throw std::out_of_range("조향장치는 1 ~ 2 범위만 선택 가능\n");
+
+			if (step == static_cast<int>(QuesionType::Run_Test) && !(answer >= 0 && answer <= 2))
+				throw std::out_of_range("Run 또는 Test 중 하나를 선택 필요\n");
+
+			//처음으로 돌아가기
+			if (answer == 0 && step == static_cast<int>(QuesionType::Run_Test)) {
+				step = static_cast<int>(QuesionType::VehicleType_Q);
+				continue;
+			}
+
+			//이전으로 돌아가기
+			if (answer == 0 && step >= 1) {
+				step -= 1;
+				continue;
+			}
+
+			if (step == static_cast<int>(QuesionType::VehicleType_Q)) {
+				vehicle = selectVehicleType(answer);
+				std::this_thread::sleep_for(std::chrono::milliseconds(800));
+				step = static_cast<int>(QuesionType::Engine_Q);
+			}
+			else if (step == static_cast<int>(QuesionType::Engine_Q)) {
+				selectEngine(vehicle, answer);
+				std::this_thread::sleep_for(std::chrono::milliseconds(800));
+				step = static_cast<int>(QuesionType::BreakSystem_Q);
+			}
+			else if (step == static_cast<int>(QuesionType::BreakSystem_Q)) {
+				selectBreakSystem(vehicle, answer);
+				std::this_thread::sleep_for(std::chrono::milliseconds(800));
+				step = static_cast<int>(QuesionType::SteeringSystem_Q);
+			}
+			else if (step == static_cast<int>(QuesionType::SteeringSystem_Q)) {
+				selectSteeringSystem(vehicle, answer);
+				std::this_thread::sleep_for(std::chrono::milliseconds(800));
+				step = static_cast<int>(QuesionType::Run_Test);
+			}
+			else if (step == static_cast<int>(QuesionType::Run_Test) && answer == 1) {
+				vehicle->run();
+				std::this_thread::sleep_for(std::chrono::milliseconds(800));
+			}
+			else if (step == static_cast<int>(QuesionType::Run_Test) && answer == 2) {
+				// Todo: test car
+				std::this_thread::sleep_for(std::chrono::milliseconds(800));
+			}
 		}
-		else if (step == static_cast<int>(QuesionType::Engine_Q)) {
-			selectEngine(vehicle, answer);
-			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = static_cast<int>(QuesionType::BreakSystem_Q);
-		}
-		else if (step == static_cast<int>(QuesionType::BreakSystem_Q)) {
-			selectBreakSystem(vehicle, answer);
-			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = static_cast<int>(QuesionType::SteeringSystem_Q);
-		}
-		else if (step == static_cast<int>(QuesionType::SteeringSystem_Q)) {
-			selectSteeringSystem(vehicle, answer);
-			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = static_cast<int>(QuesionType::Run_Test);
-		}
-		else if (step == static_cast<int>(QuesionType::Run_Test) && answer == 1) {
-			// Todo: nullptr exception handling
-			vehicle->run();
+		catch (const std::invalid_argument& e) {
+			std::cout << "ERROR :: 숫자만 입력 가능\n";
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
 		}
-		else if (step == static_cast<int>(QuesionType::Run_Test) && answer == 2) {
-			// Todo: test car
+		catch (const std::out_of_range& e) {
+			std::cout << "ERROR :: " << e.what();
+			std::this_thread::sleep_for(std::chrono::milliseconds(800));
+		}
+		catch (const std::exception& e) {
+			std::cout << "ERROR :: " << e.what() << '\n';
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
 		}
 	}

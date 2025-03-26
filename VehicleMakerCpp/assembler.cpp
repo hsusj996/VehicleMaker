@@ -18,8 +18,8 @@ public:
 		return assembler;
 	}
 
-	void assembleEngine(Vehicle* vehicle, std::string name) {
-		vehicle->setEngine(EngineFactory::makeEngine(name));
+	void assembleEngine(Vehicle* vehicle, std::string name, bool broken = false) {
+		vehicle->setEngine(EngineFactory::makeEngine(name, broken));
 	}
 
 	void assembleBreakSystem(Vehicle* vehicle, std::string name) {
