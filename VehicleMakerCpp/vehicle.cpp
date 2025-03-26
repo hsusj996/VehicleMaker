@@ -6,7 +6,7 @@
 #define interface struct
 
 interface Vehicle{
-public:
+private:
 	std::string vehicleType;
 	Engine* engine;
 	BreakSystem* breakSystem;
@@ -16,6 +16,23 @@ protected:
 	Vehicle(std::string vehicleType) : vehicleType(vehicleType), engine(nullptr), breakSystem(nullptr), steeringSystem(nullptr) {}
 
 public:
+	// Todo: getter nullptr exception handling
+	std::string getVehicleType() {
+		return vehicleType;
+	}
+
+	std::string getEngineName() {
+		return engine->getName();
+	}
+
+	std::string getBreakSystemName() {
+		return breakSystem->getName();
+	}
+
+	std::string getSteeringSystemName() {
+		return steeringSystem->getName();
+	}
+
 	void setEngine(Engine* engine) {
 		this->engine = engine;
 	}
@@ -29,7 +46,13 @@ public:
 	}
 
 	void run() {
-
+		if (engine == nullptr) {
+			std::cout << "엔진이 고장났습니다.\n";
+			std::cout << "자동차가 움직이지 않습니다.\n";
+		}
+		else {
+			std::cout << "자동차가 동작됩니다.\n";
+		}
 	}
 };
 
@@ -49,9 +72,12 @@ public:
 };
 
 // factory pattern
-inline Vehicle* makeVehicle(std::string name) {
-	if (name == "Sedan") return new Sedan();
-	if (name == "Suv") return new Suv();
-	if (name == "Truck") return new Truck();
-	return nullptr;
-}
+class VehicleFactory {
+public:
+	static Vehicle* makeVehicle(std::string name) {
+		if (name == "Sedan") return new Sedan();
+		if (name == "Suv") return new Suv();
+		if (name == "Truck") return new Truck();
+		return nullptr;
+	}
+};

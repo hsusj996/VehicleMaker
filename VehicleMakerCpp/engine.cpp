@@ -32,9 +32,12 @@ public:
 };
 
 // factory pattern
-inline Engine* makeEngine(std::string name) {
-	if (name == "Gm") return new Gm();
-	if (name == "Toyota") return new Toyota();
-	if (name == "Wia") return new Wia();
-	return nullptr;
-}
+class EngineFactory {
+public:
+	static Engine* makeEngine(std::string name) {
+		if (name == "Gm") return new Gm();
+		if (name == "Toyota") return new Toyota();
+		if (name == "Wia") return new Wia();
+		return nullptr;
+	}
+};
