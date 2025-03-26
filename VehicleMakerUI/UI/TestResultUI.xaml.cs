@@ -48,9 +48,9 @@ namespace VehicleMakerUI.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window.GetWindow(this)?.Close();
             var initial = new InitialUI();
-            initial.Show();                
+            initial.Show();
+            Window.GetWindow(this)?.Close();
         }
     }
 }
