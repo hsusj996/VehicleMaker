@@ -16,6 +16,23 @@ protected:
 	Vehicle(std::string vehicleType) : vehicleType(vehicleType), engine(nullptr), breakSystem(nullptr), steeringSystem(nullptr) {}
 
 public:
+	// Todo: getter nullptr exception handling
+	std::string getVehicleType() {
+		return vehicleType;
+	}
+
+	std::string getEngineName() {
+		return engine->getName();
+	}
+
+	std::string getBreakSystemName() {
+		return breakSystem->getName();
+	}
+
+	std::string getSteeringSystemName() {
+		return steeringSystem->getName();
+	}
+
 	void setEngine(Engine* engine) {
 		this->engine = engine;
 	}
