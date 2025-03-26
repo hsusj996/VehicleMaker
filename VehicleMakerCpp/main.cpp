@@ -2,6 +2,7 @@
 #include <string>
 #include <thread>
 #include <chrono>
+#include <cstdint>
 #include "vehicle.cpp"
 #include "assembler.cpp"
 
@@ -9,8 +10,7 @@ const std::string CLEAR_SCREEN = "\033[H\033[2J";
 using std::cout;
 using std::cin;
 
-// Todo: enum class
-enum QuesionType {
+enum class QuesionType : uint8_t {
 	VehicleType_Q,
 	Engine_Q,
 	BreakSystem_Q,
@@ -117,23 +117,23 @@ int main() {
 
 	// Todo: smart pointer
 	Vehicle* vehicle = nullptr;
-	int step = VehicleType_Q;
+	int step = static_cast<int>(QuesionType::VehicleType_Q);
 
 	while (true) {
 		switch (step) {
-		case VehicleType_Q:
+		case static_cast<int>(QuesionType::VehicleType_Q):
 			printVehicleTypeQ();
 			break;
-		case Engine_Q:
+		case static_cast<int>(QuesionType::Engine_Q):
 			printEngineQ();
 			break;
-		case BreakSystem_Q:
+		case static_cast<int>(QuesionType::BreakSystem_Q):
 			printBreakSystemQ();
 			break;
-		case SteeringSystem_Q:
+		case static_cast<int>(QuesionType::SteeringSystem_Q):
 			printSteeringSystemQ();
 			break;
-		case Run_Test:
+		case static_cast<int>(QuesionType::Run_Test):
 			printRunTest();
 			break;
 		default:
@@ -154,8 +154,8 @@ int main() {
 		int answer = std::stoi(buf);
 
 		//처음으로 돌아가기
-		if (answer == 0 && step == Run_Test) {
-			step = VehicleType_Q;
+		if (answer == 0 && step == static_cast<int>(QuesionType::Run_Test)) {
+			step = static_cast<int>(QuesionType::VehicleType_Q);
 			continue;
 		}
 
@@ -165,32 +165,32 @@ int main() {
 			continue;
 		}
 
-		if (step == VehicleType_Q) {
+		if (step == static_cast<int>(QuesionType::VehicleType_Q)) {
 			vehicle = selectVehicleType(answer);
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = Engine_Q;
+			step = static_cast<int>(QuesionType::Engine_Q);
 		}
-		else if (step == Engine_Q) {
+		else if (step == static_cast<int>(QuesionType::Engine_Q)) {
 			selectEngine(vehicle, answer);
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = BreakSystem_Q;
+			step = static_cast<int>(QuesionType::BreakSystem_Q);
 		}
-		else if (step == BreakSystem_Q) {
+		else if (step == static_cast<int>(QuesionType::BreakSystem_Q)) {
 			selectBreakSystem(vehicle, answer);
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = SteeringSystem_Q;
+			step = static_cast<int>(QuesionType::SteeringSystem_Q);
 		}
-		else if (step == SteeringSystem_Q) {
+		else if (step == static_cast<int>(QuesionType::SteeringSystem_Q)) {
 			selectSteeringSystem(vehicle, answer);
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
-			step = Run_Test;
+			step = static_cast<int>(QuesionType::Run_Test);
 		}
-		else if (step == Run_Test && answer == 1) {
+		else if (step == static_cast<int>(QuesionType::Run_Test) && answer == 1) {
 			// Todo: nullptr exception handling
 			vehicle->run();
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
 		}
-		else if (step == Run_Test && answer == 2) {
+		else if (step == static_cast<int>(QuesionType::Run_Test) && answer == 2) {
 			// Todo: test car
 			std::this_thread::sleep_for(std::chrono::milliseconds(800));
 		}
