@@ -10,8 +10,8 @@
 
             <TextBlock x:Name="ResultText" FontSize="16"
                        TextAlignment="Center"
-                       Margin="20" Visibility="Collapsed"
-                       TextWrapping="Wrap"/>
+                       Margin="20" Visibility="Collapsed" Foreground="White"
+                       TextWrapping="Wrap" />
         </StackPanel>
     </Grid>
 </UserControl>

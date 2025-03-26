@@ -118,7 +118,6 @@ namespace VehicleMakerUI.UI
             try
             {
                 string response = SocketService.SendConfiguration(SelectedConfig, testMode);
-                MessageBox.Show(response);
                 if (int.TryParse(response, out int code) && Enum.IsDefined(typeof(CppResponseCode), code))
                 {
                     CppResponseCode result = (CppResponseCode)code;
