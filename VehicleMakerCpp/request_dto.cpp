@@ -2,11 +2,11 @@
 
 // getter 메소드 구현
 TestOption request_dto::getOption() {
-   return test_option;
+	return test_option;
 }
 
-Vehicle request_dto::getVehicle() {
-   return vehicle;
+VehicleDTO request_dto::getVehicleDTO() {
+	return vehicle_dto;
 }
 
 // static from_json 메소드 구현
@@ -23,10 +23,7 @@ request_dto request_dto::from_json(const nlohmann::json& j) {
 
 	nlohmann::json vehicle_json = j["Data"];
 
-	Vehicle* vehicle = VehicleFactory::makeVehicle(vehicle_json["CarType"]);
-	Assembler::getInstance().assembleEngine(vehicle, vehicle_json["EngineType"]);
-	Assembler::getInstance().assembleBreakSystem(vehicle, vehicle_json["BrakeSystem"]);
-	Assembler::getInstance().assembleSteeringSystem(vehicle, vehicle_json["SteeringSystem"]);
+	VehicleDTO vehicle_dto{ vehicle_json["CarType"], vehicle_json["EngineType"], vehicle_json["BrakeSystem"], vehicle_json["SteeringSystem"] };
 
-	return request_dto(test_option, *vehicle);
+	return request_dto(test_option, vehicle_dto);
 }
