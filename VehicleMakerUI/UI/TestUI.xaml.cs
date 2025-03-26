@@ -29,7 +29,6 @@ namespace VehicleMakerUI.UI
         {
             var parentWindow = Window.GetWindow(this) as SelectOptionUI;
             parentWindow?.resetUI();
-            parentWindow?.SendResetToCpp();
         }
         #endregion
     }

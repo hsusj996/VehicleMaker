@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Net.Sockets;
 using System.Text;
 using VehicleMakerUI.Models;
-
 namespace VehicleMakerUI.UI
 {
     public partial class SelectOptionUI : Window
@@ -120,22 +119,24 @@ namespace VehicleMakerUI.UI
             {
                 string response = SocketService.SendConfiguration(SelectedConfig, testMode);
                 MessageBox.Show(response);
+                if (int.TryParse(response, out int code) && Enum.IsDefined(typeof(CppResponseCode), code))
+                {
+                    CppResponseCode result = (CppResponseCode)code;
+                    testUI.Visibility = Visibility.Collapsed;
+                    var resultUI = new TestResultUI(result); 
+                    resultUI.Margin = new Thickness(10, 10, 0, 10);
+
+                    SelectOptionUIMain.Content = null; 
+                    SelectOptionUIMain.Content = resultUI;
+                }
+                else
+                {
+                    MessageBox.Show("알 수 없는 응답 코드입니다.");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"전송 실패: {ex.Message}");
-            }
-        }
-
-        public void SendResetToCpp()
-        {
-            try
-            {
-                SocketService.SendReset();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"리셋 전송 실패: {ex.Message}");
             }
         }
 
