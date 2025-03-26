@@ -11,7 +11,6 @@ VehicleDTO request_dto::getVehicleDTO() {
 
 // static from_json 메소드 구현
 request_dto request_dto::from_json(const nlohmann::json& j) {
-	//TODO: 통합 후에 Vehicle 역직렬화 구현
 	TestOption test_option = TestOption::NONE;
 	if (j["Test"] == "Run") {
 		test_option = TestOption::RUN;
@@ -21,8 +20,8 @@ request_dto request_dto::from_json(const nlohmann::json& j) {
 		test_option = TestOption::TEST;
 	}
 
+	// DTO 객체로 변환
 	nlohmann::json vehicle_json = j["Data"];
-
 	VehicleDTO vehicle_dto{ vehicle_json["CarType"], vehicle_json["EngineType"], vehicle_json["BrakeSystem"], vehicle_json["SteeringSystem"] };
 
 	return request_dto(test_option, vehicle_dto);

@@ -6,6 +6,7 @@
 #include <string>
 #include "vehicle.cpp"  // Vehicle 클래스가 정의된 헤더 파일을 포함
 #include "test_option.h"
+#include "tester.cpp"
 
 class RequestHandler {
 public:
