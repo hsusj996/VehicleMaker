@@ -8,6 +8,7 @@
 #include "listener.h"
 #include "vehicle.cpp"
 #include "assembler.cpp"
+#include "tester.cpp"
 
 const std::string CLEAR_SCREEN = "\033[H\033[2J";
 using std::cout;
@@ -213,7 +214,7 @@ int main() {
 				std::this_thread::sleep_for(std::chrono::milliseconds(800));
 			}
 			else if (step == static_cast<int>(QuesionType::Run_Test) && answer == 2) {
-				// Todo: test car
+				Tester::getInstance().test(vehicle);
 				std::this_thread::sleep_for(std::chrono::milliseconds(800));
 			}
 		}
