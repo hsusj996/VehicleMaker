@@ -25,15 +25,4 @@ public static class SocketService
         int bytes = stream.Read(buffer, 0, buffer.Length);
         return Encoding.UTF8.GetString(buffer, 0, bytes);
     }
-
-    public static void SendReset()
-    {
-        var payload = new { Command = "Reset" };
-        string json = JsonSerializer.Serialize(payload);
-        byte[] data = Encoding.UTF8.GetBytes(json);
-
-        using TcpClient client = new TcpClient("127.0.0.1", 8080);
-        using NetworkStream stream = client.GetStream();
-        stream.Write(data, 0, data.Length);
-    }
 }
