@@ -16,18 +16,18 @@ Vehicle request_dto::getVehicle() {
 request_dto request_dto::from_json(const nlohmann::json& j) {
 	//TODO: 통합 후에 Vehicle 역직렬화 구현
 	TestOption test_option = TestOption::NONE;
-	if (j["TestOption"] == "Run") {
+	if (j["Test"] == "Run") {
 		test_option = TestOption::RUN;
 	}
 
-	if (j["TestOption"] == "Test") {
+	if (j["Test"] == "Test") {
 		test_option = TestOption::TEST;
 	}
 
 	nlohmann::json vehicle_json = j["Data"];
-	Vehicle vehicle = Vehicle();
-	vehicle.setBreakSystem(makeBreakSystem(vehicle_json["BreakSystem"]));
-	vehicle.setEngine(makeEngine(vehicle_json["Engine"]));
+	Vehicle vehicle = Vehicle(vehicle_json["CarType"]);
+	vehicle.setBreakSystem(makeBreakSystem(vehicle_json["BrakeSystem"]));
+	vehicle.setEngine(makeEngine(vehicle_json["EngineType"]));
 	vehicle.setSteeringSystem(makeSteeringSystem(vehicle_json["SteeringSystem"]));
 	return request_dto(test_option, vehicle);
 }
