@@ -1,62 +1,4 @@
-//#include "listener.h"
-//#include "request_dto.h"
-//#include <nlohmann/json.hpp>
-//
-//void Listener::startListening() {
-//	char data[max_length];
-//	boost::asio::ip::udp::endpoint sender_endpoint;
-//
-//	try {
-//		while (listen_flag) {
-//			boost::system::error_code ec;
-//			size_t length = socket.receive_from(boost::asio::buffer(data, sizeof(data)), sender_endpoint, 0, ec);
-//
-//			if (ec) {
-//				std::cerr << "Error: " << ec.message() << std::endl;
-//				continue;
-//			}
-//
-//			if (length == 0) {
-//				continue;
-//			}
-//
-//			// RequestDTO 파싱
-//			request_dto request = request_dto::from_json(nlohmann::json::parse(data));
-//			// 비즈니스 로직 수행
-//			std::string result = requestHandler.handle(request);
-//
-//			// 응답 처리
-//			int retry = 0;
-//			socket.send_to(boost::asio::buffer(result), sender_endpoint, 0, ec);
-//			while (ec && ++retry < 5) {
-//				socket.send_to(boost::asio::buffer(result), sender_endpoint, 0, ec);
-//			}
-//		}
-//	}
-//	catch (const boost::system::system_error& e) {
-//		// Boost 시스템 오류
-//		// 쓰레드 재실행
-//		std::cerr << e.what() << std::endl;
-//		startListening();
-//	}
-//	catch (const std::exception& e) {
-//		// 그 외의 오류
-//		std::cerr << e.what() << std::endl;
-//		// 쓰레드 재실행
-//		startListening();
-//	}
-//}
-//
-//void listener_thread(boost::asio::io_context& io_context, RequestHandler& requestHandler, int port) {
-//	Listener listener(io_context, port, requestHandler);
-//	listener.startListening();
-//}
-
 #include "listener.h"
-#include "request_dto.h"
-#include <iostream>
-#include <boost/asio.hpp>
-#include <nlohmann/json.hpp>
 
 void Listener::startListening() {
     char data[max_length];
@@ -84,13 +26,19 @@ void Listener::startListening() {
             nlohmann::json json_request = nlohmann::json::parse(std::string(data, length));
             request_dto request = request_dto::from_json(json_request);
 
+            // 잘못된 요청
+			if (request.getOption() == TestOption::NONE) {
+				continue;
+			}
+
             // 비즈니스 로직 수행
-            std::string result = requestHandler.handle(request);
+            Result result = requestHandler.handle(request);
+			std::string response = std::to_string(static_cast<int>(result));
 
             // 응답 송신
-            boost::asio::write(socket, boost::asio::buffer("test"), ec);
+            boost::asio::write(socket, boost::asio::buffer(response), ec);
             while (ec) {
-                boost::asio::write(socket, boost::asio::buffer("test"), ec); // 재시도
+                boost::asio::write(socket, boost::asio::buffer(response), ec); // 재시도
             }
 
             socket.close(); // 응답 후 소켓 닫기
