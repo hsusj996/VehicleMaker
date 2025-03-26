@@ -3,6 +3,9 @@
 #include <thread>
 #include <chrono>
 #include <cstdint>
+#include <boost/asio.hpp>
+#include "request_handler.h"
+#include "listener.h"
 #include "vehicle.cpp"
 #include "assembler.cpp"
 
@@ -114,6 +117,11 @@ void selectSteeringSystem(Vehicle* vehicle, int answer) {
 
 int main() {
 	std::string buf;
+
+	boost::asio::io_context io_context;
+	RequestHandler requestHandler;
+	int port = 8080;
+	std::thread t{ listener_thread, std::ref(io_context), std::ref(requestHandler), port };
 
 	// Todo: smart pointer
 	Vehicle* vehicle = nullptr;

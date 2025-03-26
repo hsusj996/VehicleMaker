@@ -1,3 +1,4 @@
+#pragma once
 enum class Result {
     Fail_EngineBroken = 0,
     Success_Run = 1,
