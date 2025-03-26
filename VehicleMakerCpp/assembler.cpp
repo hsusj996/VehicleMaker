@@ -5,17 +5,28 @@
 #include "break_system.cpp"
 #include "steering_system.cpp"
 
+// singleton
 class Assembler {
+private:
+	Assembler() = default;
+	Assembler(const Assembler& ref) = delete;
+	Assembler& operator=(const Assembler& ref) = delete;
+
 public:
-	void selectEngine(Vehicle* vehicle, std::string name) {
-		vehicle->setEngine(makeEngine(name));
+	static Assembler& getInstance() {
+		static Assembler assembler;
+		return assembler;
 	}
 
-	void selectBreakSystem(Vehicle* vehicle, std::string name) {
-		vehicle->setBreakSystem(makeBreakSystem(name));
+	void assembleEngine(Vehicle* vehicle, std::string name) {
+		vehicle->setEngine(EngineFactory::makeEngine(name));
 	}
 
-	void selectSteeringSystem(Vehicle* vehicle, std::string name) {
-		vehicle->setSteeringSystem(makeSteeringSystem(name));
+	void assembleBreakSystem(Vehicle* vehicle, std::string name) {
+		vehicle->setBreakSystem(BreakSystemFactory::makeBreakSystem(name));
+	}
+
+	void assembleSteeringSystem(Vehicle* vehicle, std::string name) {
+		vehicle->setSteeringSystem(SteeringSystemFactory::makeSteeringSystem(name));
 	}
 };
