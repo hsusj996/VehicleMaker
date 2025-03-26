@@ -123,6 +123,7 @@ namespace VehicleMakerUI.UI
                     CppResponseCode result = (CppResponseCode)code;
                     testUI.Visibility = Visibility.Collapsed;
                     var resultUI = new TestResultUI(result,SelectedConfig); 
+                    
                     resultUI.Margin = new Thickness(10, 10, 0, 10);
                     SelectOptionUIMain.Content = null; 
                     SelectOptionUIMain.Content = resultUI;
