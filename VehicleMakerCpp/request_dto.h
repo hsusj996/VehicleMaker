@@ -1,18 +1,20 @@
 #pragma once
 #include <nlohmann/json.hpp>
-#include "vehicle.h"  // Vehicle 클래스 헤더파일 포함
+#include "vehicle.cpp"
+#include "test_option.h"
 
 class request_dto {
 private:
-    int option;
+    TestOption test_option;
     Vehicle vehicle;
 
 public:
     // 생성자 선언
-    request_dto(int option, Vehicle vehicle);
+	request_dto() = default;
+    request_dto(TestOption test_option, Vehicle vehicle);
 
     // getter 메소드 선언
-    int getOption();
+    TestOption getOption();
     Vehicle getVehicle();
 
     // static from_json 메소드 선언

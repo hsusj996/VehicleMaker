@@ -12,7 +12,6 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="8*"/>
             <RowDefinition Height="9*"/>
-            <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="213*"/>
@@ -37,6 +36,7 @@
         <Label Content="BOSCH" FontSize="50" Foreground="White" Margin="228,10,228,10" Grid.Row="2"/>
         <Label Content="Continental" FontSize="50" Foreground="White" Margin="191,10,177,10" Grid.Row="2" Grid.Column="1"/>
         <Label Content="Mando" FontSize="50" Foreground="White" Margin="231,10,231,10" Grid.Row="2" Grid.Column="2"/>
+        
         <Button x:Name="btnSelectBosch" Content="Select" Grid.Row="3" FontSize="36" Margin="178,33,177,34" Click="btnSelectBosch_Click"/>
         <Button x:Name="btnSelectContinental" Content="Select" Grid.Column="1" Grid.Row="3" FontSize="36" Margin="178,33,177,34" Click="btnSelectContinental_Click"/>
         <Button x:Name="btnSelectMando" Content="Select" Grid.Column="2" Grid.Row="3" FontSize="36" Margin="178,33,177,34" Click="btnSelectMando_Click"/>

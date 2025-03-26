@@ -7,13 +7,15 @@
              d:DesignHeight="900" d:DesignWidth="1920">
     <Grid Height="900" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
-            <RowDefinition Height="53*"/>
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="106*"/>
-            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="213*"/>
+            <ColumnDefinition Width="214*"/>
+            <ColumnDefinition Width="213*"/>
         </Grid.ColumnDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -21,17 +23,21 @@
                 <GradientStop Color="#FF556BE8" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <DockPanel LastChildFill="False" Grid.Column="1" Margin="10,0,0,10"/>
         <DockPanel LastChildFill="False" Grid.Column="2">
             <Image Source="pack://application:,,,/Properties/Test/test_Test.jpg" Stretch="Uniform" Height="790" Width="640"/>
         </DockPanel>
         <Image Source="pack://application:,,,/Properties/Test/test_Run.jpg" Stretch="Uniform" Margin="0,10,0,8" Grid.Column="1"/>
-        <Button x:Name="btnRun" Content="RUN" Margin="202,31,192,32" Grid.Row="1" FontSize="24" Click="btnRun_Click" Grid.Column="1"/>
-        <Button x:Name="btnTest" Content="TEST" Margin="200,32,200,31" Grid.Row="1" FontSize="24" Click="btnTest_Click" Grid.Column="2"/>
-        <DockPanel LastChildFill="False">
+         <DockPanel LastChildFill="False">
             <Image Source="pack://application:,,,/Properties/Test/test_reset.jpg" Stretch="Uniform" Width="639"/>
         </DockPanel>
-        <Button x:Name="btnReset" Content="RESET" FontSize="24" Margin="200,31,200,31" Grid.Row="1" Click="btnReset_Click"/>
+        
+        <Label Content="RESET" FontSize="50" Foreground="White" Margin="242,10,241,10" Grid.Row="2"/>
+        <Label Content="RUN" FontSize="50" Foreground="White" Margin="265,10,256,10" Grid.Row="2" Grid.Column="1"/>
+        <Label Content="TEST" FontSize="50" Foreground="White" Margin="252,10,252,10" Grid.Row="2" Grid.Column="2"/>
+
+        <Button x:Name="btnReset" Content="Select" FontSize="24" Margin="178,33,177,34" Grid.Row="3" Click="btnReset_Click"/>
+        <Button x:Name="btnRun" Content="Select" Margin="178,33,177,34" Grid.Row="3" FontSize="24" Click="btnRun_Click" Grid.Column="1"/>
+        <Button x:Name="btnTest" Content="Select" Margin="178,33,177,34" Grid.Row="3" FontSize="24" Click="btnTest_Click" Grid.Column="2"/>
 
     </Grid>
 </UserControl>
